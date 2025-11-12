@@ -1,0 +1,63 @@
+{
+  "name": "portal-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "msw:build": "msw init public/ --save && echo 'msw worker init done'"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@tanstack/react-query": "^5.90.2",
+    "@tanstack/react-virtual": "^3.13.12",
+    "echarts": "^6.0.0",
+    "echarts-for-react": "^3.0.2",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.9.1",
+    "react-toastify": "^11.0.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@faker-js/faker": "^8.0.2",
+    "@mui/base": "5.0.0-beta.70",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/lab": "^6.0.0-alpha.133",
+    "@mui/material": "^6.5.0",
+    "axios": "^1.5.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.23",
+    "styles": "link:@mui/material/styles",
+    "uuid": "^9.0.1",
+    "zustand": "^4.5.2"
+    
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/leaflet": "^1.9.20",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "sass": "^1.92.1",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.2",
+    "msw": "^1.2.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "packageManager": "pnpm@10.18.0+sha512.e804f889f1cecc40d572db084eec3e4881739f8dec69c0ff10d2d1beff9a4e309383ba27b5b750059d7f4c149535b6cd0d2cb1ed3aeb739239a4284a68f40cfa"
+}

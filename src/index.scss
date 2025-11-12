@@ -1,0 +1,188 @@
+@use "sass:color";
+@use "./theme.scss" as theme;
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/noto-sans-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/noto-sans-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/noto-sans-700.woff2") format("woff2");
+}
+
+:root {
+  --safe-h: 100dvh;
+  // scrollbar colors stay in custom properties so forced-color/HC modes can override via OS settings
+  $scrollbar-track-color: color.adjust(theme.$background-color-secondary, $lightness: -4%);
+  $scrollbar-thumb-color: color.mix(theme.$color-primary, theme.$background-color-tertiary, $weight: 25%);
+  $scrollbar-thumb-hover-color: color.adjust($scrollbar-thumb-color, $lightness: 6%);
+  $scrollbar-thumb-active-color: color.adjust($scrollbar-thumb-color, $lightness: -6%);
+
+  --scrollbar-track-color: #{$scrollbar-track-color};
+  --scrollbar-thumb-color: #{$scrollbar-thumb-color};
+  --scrollbar-thumb-hover-color: #{$scrollbar-thumb-hover-color};
+  --scrollbar-thumb-active-color: #{$scrollbar-thumb-active-color};
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+html,
+body {
+  height: 100dvh;
+  width: 100dvw;
+  display: block;
+  background: theme.$background-color-primary;
+  color: theme.$font-color-primary;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Noto Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Apple Color Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+}
+
+* {
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+  scrollbar-width: auto;
+
+  &::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 999px;
+    border: 4px solid var(--scrollbar-track-color);
+    min-height: 32px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background: var(--scrollbar-thumb-active-color);
+  }
+}
+
+@media (forced-colors: active) {
+  * {
+    scrollbar-color: auto;
+  }
+
+  *::-webkit-scrollbar,
+  *::-webkit-scrollbar-thumb,
+  *::-webkit-scrollbar-track {
+    color: auto;
+    background: none;
+    border: none;
+  }
+}
+
+h1 { font-size: clamp(1.25rem, 4vw, 1.6rem); font-weight: 400; display: inline-block; width: auto; }
+h2 { 
+  font-size: clamp(1.1rem, 3.5vw, 1.2rem); 
+  color: theme.$font-color-secondary;
+  display: inline-block;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+}
+h3 { font-size: clamp(0.95rem, 3vw, 1rem); display: inline-block; width: auto; }
+span { font-size: 0.8rem; }
+
+input {
+  padding: 10px;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  width: 100%; /* play nice on small screens */
+  box-sizing: border-box;
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  transition: background-color 0.15s ease-in;
+  background-color: theme.$color-primary;
+  color: theme.$font-color-reverse;
+  cursor: pointer;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background-color: color.adjust(
+      color.mix(theme.$font-color-reverse, theme.$color-primary, $weight: 15%),
+      $saturation: 40%
+    );
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 3px color.change(theme.$color-primary, $alpha: 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+  &:not(:disabled):active {
+    background-color: color.adjust(theme.$color-primary, $lightness: -5%);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+    background-color: theme.$color-primary;
+  }
+}
+
+label {
+  color: theme.$font-color-tertiary;
+  font-size: 0.8rem;
+}
+
+a {
+  text-decoration: none;
+  padding: none;
+  margin: none;
+}
